@@ -14,13 +14,17 @@ type Props = {
 
 type TFormConfig = {
   defaultValues?: Record<string, any>;
+  resolver?: any;
 };
 
-const PHForm = ({ onSubmit, children, defaultValues }: Props) => {
+const PHForm = ({ onSubmit, children, defaultValues, resolver }: Props) => {
   const formConfig: TFormConfig = {};
 
   if (defaultValues) {
     formConfig["defaultValues"] = defaultValues;
+  }
+  if (resolver) {
+    formConfig["resolver"] = resolver;
   }
   const methods = useForm(formConfig);
   return (

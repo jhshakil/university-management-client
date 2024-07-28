@@ -30,7 +30,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   DefinitionType
 > = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
-  if (result.error?.status === 404) toast.error("User not found");
+  if (result.error?.status === 404) toast.error(result.error.data.message);
   if (result.error?.status === 401) {
     // send Refresh token
     const res = await fetch("http://localhost:5050/api/v1/auth/refresh-token", {
