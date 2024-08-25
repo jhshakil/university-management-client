@@ -4,14 +4,17 @@ import { Controller } from "react-hook-form";
 type Props = {
   name: string;
   label?: string;
-  options: {
-    value: string;
-    label: string;
-    disabled?: boolean;
-  }[];
+  options:
+    | {
+        value: string;
+        label: string;
+        disabled?: boolean;
+      }[]
+    | undefined;
+  disabled?: boolean;
 };
 
-const PHSelect = ({ name, label, options }: Props) => {
+const PHSelect = ({ name, label, options, disabled }: Props) => {
   return (
     <Controller
       name={name}
@@ -21,6 +24,7 @@ const PHSelect = ({ name, label, options }: Props) => {
             {...field}
             style={{ width: "100%" }}
             options={options}
+            disabled={disabled}
             size="large"
           />
           {error && <small style={{ color: "red" }}>{error.message}</small>}
